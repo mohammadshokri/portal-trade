@@ -1,0 +1,146 @@
+{% extends 'main.html' %}
+{% block content %}
+<div>
+    {% if user.is_authenticated == True and request.user.id == form.id.value %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_form_errors }}
+        {{ form.management_form }}
+        <div hidden>{{form.id }}</div>
+        <div class="bg-white border rounded">
+            <div class="row no-gutters">
+                <div class="col-lg-4 col-xl-3">
+                    <div class="profile-content-left profile-left-spacing pt-5 pb-3 px-3 px-xl-5">
+                        <div class="card text-center widget-profile px-0 border-0">
+                            <div class="card-img mx-auto rounded-circle">
+                                <img src="{{form.avatar.value.url}}" width="50 100%">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="py-2 text-dark">{{request.user.username}}</h4>
+                                <p id="id_status" hidden>{{form.status }}</p>
+                                <p id="id_status_desc"><h4 class="py-2 text-dark"></h4></p>
+                            </div>
+                        </div>
+                        <hr class="w-100">
+                        <div class="contact-info pt-4">
+                            <h5 class="text-dark mb-1">Contact Information</h5>
+                            <p class="text-dark font-weight-medium pt-4 mb-2">Email address</p>
+                            <p>{{form.email.value}}</p>
+                            <p class="text-dark font-weight-medium pt-4 mb-2">Phone Number</p>
+                            <p>{{form.phone.value}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-xl-9">
+                    <div class="profile-content-right profile-right-spacing py-5">
+                        <ul class="nav nav-tabs px-3 px-xl-5 nav-style-border" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#profile" role="tab"
+                                   aria-controls="profile" aria-selected="true">Profile</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link " data-toggle="tab" href="#setting"
+                                   role="tab" aria-controls="setting" aria-selected="false">Settings</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#Referal" role="tab"
+                                   aria-controls="Referal" aria-selected="false">Referal</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content px-3 px-xl-5" id="myTabContent">
+
+                            <div class="tab-pane fade show active" id="profile-tab" role="tabpanel"
+                                 aria-labelledby="profile-tab">
+                                <div class="tab-pane-content mt-5">
+                                    <div class="form-group row mb-6">
+                                        <label for="coverImage" class="col-sm-4 col-lg-2 col-form-label">User
+                                            Image</label>
+                                        <div class="col-sm-8 col-lg-10">
+                                            <div class="custom-file mb-1">
+
+                                                <input value={{form.avatar.value}} name="avatar" type="file"
+                                                       accept="image/*" class="custom-file-input" id="id_avatar">
+                                                <label class="custom-file-label" for="id_avatar">Choose file...</label>
+
+                                                <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row mb-2">
+
+                                        <div class="col-6">
+                                            <label for="id_first_name">First name</label>
+                                            <input name="first_name" class="form-control"
+                                                   value={{form.first_name.value}}>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="id_last_name">Last name</label>
+                                                <input id="id_last_name" name="last_name" class="form-control"
+                                                       value={{form.last_name.value}}>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-6 form-group">
+                                            <div class="form-group mb-4">
+                                                <label for="id_phone">Phone:</label>
+                                                <input id="id_phone" name="phone" class="form-control"
+                                                       value={{form.phone.value}}>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 form-group">
+                                            <div class="form-group mb-4">
+                                                <label for="id_email">Email:</label>
+                                                <input id="id_email" name="email" class="form-control"
+                                                       value={{form.email.value}}>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mb-2 btn-pill">Update Profile
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade  " id="setting-tab" role="tabpanel" aria-labelledby="setting-tab">
+                                <p> Settting</p>
+
+                            </div>
+
+                            <div class="tab-pane fade " id="referal-tab" role="tabpanel" aria-labelledby="referal-tab">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="media-body">
+                                            <h6 class="mt-0 text-dark">Referal Code</h6>
+                                            <span>99988889999</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <a href="{% url 'home' %}">Back ...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    {% else %}
+    <p>You're not allowed here!</p>
+    {% endif%}
+</div>
+<script>
+    $(document).ready(function(){
+        if ( $("#id_status").html() == 1 ){
+            $("#id_status_desc").html("Active");
+        }else{
+            $("#id_status_desc").html("Inactive");
+        }
+    })
+</script>
+{% endblock%}

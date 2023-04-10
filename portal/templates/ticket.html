@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-default">
+            <div class="card-header card-header-border-bottom">
+                <h2>Create Signal</h2>
+            </div>
+            <div class="card-body">
+                {% for t in tickets%}
+                <div class=" border border-primary my-2 row d-flex p-2">
+                    <div class="col-9">
+                        <h5>{{t.id}}#</h5>
+                        <h3>{{t.dsc}} Status {{t.status}}</h3>
+                        <h4 class="ml-4">{{t.resp|slice:":70"}}...</h4>
+                    </div>
+                    <div class="col-3 justify-content-md-end">
+                        <div class="row justify-content-md-end">
+                            <button href="#" type="button" class="btn btn-info ">Detail</button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="form-footer pt-5 border-top">
+                <div>
+    <span>
+    {% if tickets.has_previous %}
+      <a href="?page={{ tickets.previous_page_number }}">Previous</a>
+    {% endif %}
+    <span>
+      Page {{ tickets.number }} of {{ tickets.paginator.num_pages }}.
+    </span>
+    {% if tickets.has_next %}
+      <a href="?page={{ tickets.next_page_number }}">Next</a>
+    {% endif %}
+  </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+</div>
+{% endblock%}

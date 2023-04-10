@@ -1,0 +1,89 @@
+{% extends 'main.html' %}
+{% load bootstrap %}
+{% block content %}
+<div>
+    {% if user.is_authenticated == True and request.user.id == customerConfig.customer_id %}
+    <form method="POST" action="">
+            {% csrf_token%}
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        {{form_row.name|bootstrap}}
+                        {{form_row.customer|bootstrap}}
+                        {{form_row.api_key|bootstrap}}
+                        {{form_row.api_name|bootstrap}}
+                        {{form_row.api_secret|bootstrap}}
+                        {{form_row.api_passphrase|bootstrap}}
+                        {{form_row.trading_pass|bootstrap}}
+                        {{form_row.provider_id|bootstrap}}
+                        {{form_row.channel_id|bootstrap}}
+                        {{form_row.ex_id|bootstrap}}
+                        {{form_row.amuont|bootstrap}}
+                        {{form_row.close_trade|bootstrap}}
+                    </div>
+                    <div class="col-md-4">
+                        {{form_row.grace_percent|bootstrap}}
+                        {{form_row.trailing_en|bootstrap}}
+                        {{form_row.trailing_tp|bootstrap}}
+                        {{form_row.trailing_stop|bootstrap}}
+                        {{form_row.min_symb_interval|bootstrap}}
+                        {{form_row.blacklist_symb|bootstrap}}
+                        {{form_row.blacklist_pair|bootstrap}}
+                        {{form_row.use_ep_percent|bootstrap}}
+                        {{form_row.ep1_percent|bootstrap}}
+                        {{form_row.ep2_percent|bootstrap}}
+                        {{form_row.ep3_percent|bootstrap}}
+                        {{form_row.ep4_percent|bootstrap}}
+                        {{form_row.use_tp_percent|bootstrap}}
+                        {{form_row.number_tp|bootstrap}}
+                    </div>
+                    <div class="col-md-4">
+                        <div class="tps">
+                            <input type="button"  id="id_tps_btn"> Reset Percentages</input>
+                            <br/>
+                            <input class="tp_c" id="id_tp1" placeholder="100" value={{form_row.tp1_percent}}></input>
+                            <input class="tp_c" id="id_tp2" placeholder="0" value={{form_row.tp2_percent}}></input>
+                            <input class="tp_c" id="id_tp3" placeholder="0" value={{form_row.tp3_percent}}></input>
+                            <input class="tp_c" id="id_tp4" placeholder="0" value={{form_row.tp4_percent}}></input>
+                            <input class="tp_c" id="id_tp5" placeholder="0" value={{form_row.tp5_percent}}></input>
+                            <input class="tp_c" id="id_tp6" placeholder="0" value={{form_row.tp6_percent}}></input>
+                            <input class="tp_c" id="id_tp7" placeholder="0" value={{form_row.tp7_percent}}></input>
+                            <input class="tp_c" id="id_tp8" placeholder="0" value={{form_row.tp8_percent}}></input>
+                            <input class="tp_c" id="id_tp9" placeholder="0" value={{form_row.tp9_percent}}></input>
+                            <input class="tp_c" id="id_tp10" placeholder="0" value={{form_row.tp10_percent}}></input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <input type="Submit" value="Submit"/>
+    </form>
+    {% else %}
+    You're not allowed here!
+    {% endif%}
+</div>
+<hr>
+<a href="{% url 'home' %}">Back ...</a>
+<script>
+    $(document).ready(function(){
+        var tp_percent = 100;
+        $("#id_tps_btn").click(function(){
+            tp_percent=100;
+            $(".tp_c").val(0);
+            $(".tp_c").first().val(100);
+            })
+        $(".tp_c").focusout( function(){
+            //alert(tp_percent +'     '+ $(this).val());
+
+            if ($(this).val() < 0 ){ $(this).val(0)}
+            if ($(this).val() > tp_percent ){ $(this).val(tp_percent)}
+            tp_percent = tp_percent - $(this).val();
+            if (tp_percent < 0 ){ tp_percent=0}
+            $(this).next().val(tp_percent);
+        })
+
+    })
+
+</script>
+{% endblock content %}

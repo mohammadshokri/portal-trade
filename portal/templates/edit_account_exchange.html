@@ -1,0 +1,282 @@
+{% extends 'main.html' %}
+{% block content %}
+<div>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_form_errors }}
+        {{ form.management_form }}
+        <div class="bg-white border rounded">
+            <div class="row no-gutters">
+                <div class="col-lg-8 col-xl-12">
+                    <div class="profile-content-right profile-right-spacing py-5">
+                        <ul class="nav nav-tabs px-3 px-xl-5 nav-style-border" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#account" aria-selected="true">Account</a>
+                            </li>
+                            {{form.customer.as_hidden}}
+                            <li class="nav-item">
+                                <a class="nav-link " data-toggle="tab" href="#advanced"
+                                   aria-selected="false">Adanced Setting</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content px-3 px-xl-5" id="myTabContent">
+
+                            <div class="tab-pane fade show active" id="account">
+                                <div class="tab-pane-content mt-5">
+                                    <div class="row mb-2">
+
+                                        <div class="col-3">
+                                            <label for="id_first_name">Name</label>
+                                            <input name="name" class="form-control"
+                                                   value={{form.name.value}}>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>API Name</label>
+                                            <input id="api_name" name="api_name" class="form-control"
+                                                   value={{form.api_name.value}}>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>API Key</label>
+                                            <input name="api_key" class="form-control"
+                                                   value={{form.api_key.value}}>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>API Secret</label>
+                                            <input name="api_secret" class="form-control"
+                                                   value={{form.api_secret.value}}>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row mb-2">
+
+                                        <div class="col-3">
+                                            <label>API Passphrase</label>
+                                            <input name="api_passphrase" class="form-control"
+                                                   value={{form.api_passphrase.value}}>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>Trading Pass</label>
+                                            <input name="trading_pass" class="form-control"
+                                                   value={{form.trading_pass.value}}>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>Provider</label>
+                                            <input name="provider_id" class="form-control"
+                                                   value={{form.provider_id.value}}>
+                                        </div>
+                                        <div class="col-lg-3"><label> amuont</label><input name="amuont"
+                                                                                           class="form-control"
+                                                                                           value={{form.amuont.value}}>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-2">
+                                        <div class="col-lg-3"><label> close_trade</label><input name="close_trade"
+                                                                                                class="form-control"
+                                                                                                value={{form.close_trade.value}}>
+                                        </div>
+                                        <div class="col-lg-3"><label> grace_percent</label><input name="grace_percent"
+                                                                                                  class="form-control"
+                                                                                                  value={{form.grace_percent.value}}>
+                                        </div>
+                                        <div class="col-lg-3"><label> trailing_en</label><input name="trailing_en"
+                                                                                                class="form-control"
+                                                                                                value={{form.trailing_en.value}}>
+                                        </div>
+                                        <div class="col-lg-3"><label> trailing_tp</label><input name="trailing_tp"
+                                                                                                class="form-control"
+                                                                                                value={{form.trailing_tp.value}}>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-lg-3"><label> use_tp_percent</label><input
+                                                name="use_tp_percent" class="form-control"
+                                                value={{form.use_tp_percent.value}}></div>
+                                        <div class="col-lg-3">
+                                            <label> status</label>
+                                            <select id="id_status" class="form-control" name="status"
+                                                    value="{{form.status}}">
+                                                <option value="1">Active</option>
+                                                <option value="2">Inactive</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3"><label> min_symb_interval</label><input
+                                                name="min_symb_interval" class="form-control"
+                                                value={{form.min_symb_interval.value}}></div>
+                                        <div class="col-lg-3"><label> use_ep_percent</label><input
+                                                name="use_ep_percent" class="form-control"
+                                                value={{form.use_ep_percent.value}}></div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row mb-2">
+                                        <button type="submit" value="update" class="btn btn-primary mb-2 btn-pill">Update Profile
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="advanced">
+                                <div class="row mt-3">
+                                    <div class="col-3">
+                                        <div class="card card-default">
+                                            <div class="card-header mb-3">
+                                                <h2>Set TPs</h2>
+                                            </div>
+                                            <div clas="tps">
+                                                <div class="col-sm-12">
+                                                    <div class="input-group input-group-sm ">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text font-weight-medium">tp1</span>
+                                                        </div>
+                                                        <input type="text" class="form-control font-weight-medium"
+                                                               value={{form.tp1_percent.value}}>
+                                                        <div class="input-group-append"><span
+                                                                class="input-group-text">%</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="input-group input-group-sm ">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text font-weight-medium">tp2</span>
+                                                        </div>
+                                                        <input type="text" class="form-control font-weight-medium"
+                                                               value={{form.tp2_percent.value}}>
+                                                        <div class="input-group-append"><span
+                                                                class="input-group-text">%</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="input-group input-group-sm ">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text font-weight-medium">tp3</span>
+                                                        </div>
+                                                        <input type="text" class="form-control font-weight-medium"
+                                                               value={{form.tp3_percent.value}}>
+                                                        <div class="input-group-append"><span
+                                                                class="input-group-text">%</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="input-group input-group-sm ">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text font-weight-medium">tp4</span>
+                                                        </div>
+                                                        <input type="text" class="form-control font-weight-medium"
+                                                               value={{form.tp4_percent.value}}>
+                                                        <div class="input-group-append"><span
+                                                                class="input-group-text">%</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="input-group input-group-sm ">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text font-weight-medium">tp5</span>
+                                                        </div>
+                                                        <input type="text" class="form-control font-weight-medium"
+                                                               value={{form.tp5_percent.value}}>
+                                                        <div class="input-group-append"><span
+                                                                class="input-group-text">%</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="input-group input-group-sm ">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text font-weight-medium">tp6</span>
+                                                        </div>
+                                                        <input type="text" class="form-control font-weight-medium"
+                                                               value={{form.tp6_percent.value}}>
+                                                        <div class="input-group-append"><span
+                                                                class="input-group-text">%</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="input-group input-group-sm ">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text font-weight-medium">tp7</span>
+                                                        </div>
+                                                        <input type="text" class="form-control font-weight-medium"
+                                                               value={{form.tp7_percent.value}}>
+                                                        <div class="input-group-append"><span
+                                                                class="input-group-text">%</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="input-group input-group-sm ">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text font-weight-medium">tp8</span>
+                                                        </div>
+                                                        <input type="text" class="form-control font-weight-medium"
+                                                               value={{form.tp8_percent.value}}>
+                                                        <div class="input-group-append"><span
+                                                                class="input-group-text">%</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="input-group input-group-sm ">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text font-weight-medium">tp9</span>
+                                                        </div>
+                                                        <input type="text" class="form-control font-weight-medium"
+                                                               value={{form.tp9_percent.value}}>
+                                                        <div class="input-group-append"><span
+                                                                class="input-group-text">%</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="input-group input-group-sm ">
+                                                        <div class="input-group-prepend"><span
+                                                                class="input-group-text font-weight-medium">tp10</span>
+                                                        </div>
+                                                        <input type="text" class="form-control font-weight-medium"
+                                                               value={{form.tp10_percent.value}}>
+                                                        <div class="input-group-append"><span
+                                                                class="input-group-text">%</span></div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="card card-default">
+                                            <div class="card-header mb-3">
+                                                <h2> config</h2>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3"><label> ep1_percent</label><input
+                                                        name="ep1_percent" class="form-control"
+                                                        value={{form.ep1_percent.value}}></div>
+                                                <div class="col-lg-3"><label> ep2_percent</label><input
+                                                        name="ep2_percent" class="form-control"
+                                                        value={{form.ep2_percent.value}}></div>
+                                                <div class="col-lg-3"><label> ep3_percent</label><input
+                                                        name="ep3_percent" class="form-control"
+                                                        value={{form.ep3_percent.value}}></div>
+                                                <div class="col-lg-3"><label> ep4_percent</label><input
+                                                        name="ep4_percent" class="form-control"
+                                                        value={{form.ep4_percent.value}}></div>
+                                            </div>
+                                            <div class="row">
+
+
+                                                <div class="col-lg-3"><label> trailing_stop</label><input
+                                                        name="trailing_stop" class="form-control"
+                                                        value={{form.trailing_stop.value}}></div>
+                                                <div class="col-lg-3"><label> number_tp</label><input name="number_tp"
+                                                                                                      class="form-control"
+                                                                                                      value={{form.number_tp.value}}>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock%}

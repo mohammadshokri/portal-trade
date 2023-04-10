@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- theme meta -->
+    <meta name="theme-name" content="sleek"/>
+    <!-- GOOGLE FONTS -->
+    <link href="/static/assets/fonts/google_font.css" type="text/css"/>
+
+    <link href="/static/assets/css/materialdesignicons.min.css" rel="stylesheet"/>
+    <!-- PLUGINS CSS STYLE -->
+    <link href="/static/assets/plugins/simplebar/simplebar.css" rel="stylesheet"/>
+    <link href="/static/assets/plugins/nprogress/nprogress.css" rel="stylesheet"/>
+
+    <!-- No Extra plugin used -->
+    <link href='/static/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css' rel='stylesheet'>
+    <link href='/static/assets/plugins/daterangepicker/daterangepicker.css' rel='stylesheet'>
+
+
+    <link href='/static/assets/plugins/toastr/toastr.min.css' rel='stylesheet'>
+
+    <!-- SLEEK CSS -->
+    <link id="sleek-css" rel="stylesheet" href="/static/assets/css/sleek.css"/>
+
+    <!-- FAVICON -->
+    <link href="/static/assets/img/favicon.png" rel="shortcut icon"/>
+    <!--
+      HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+    -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/static/assets/js/html5shiv.min.js"></script>
+    <script src="/static/assets/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="/static/assets/plugins/nprogress/nprogress.js"></script>
+</head>
+
+<body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
+<script>
+      NProgress.configure({ showSpinner: false });
+      NProgress.start();
+
+
+
+</script>
+{% if request.user.is_authenticated %}
+<div id="toaster"></div>
+
+<!-- ====================================
+——— WRAPPER
+===================================== -->
+<div class="wrapper">
+    <aside class="left-sidebar bg-sidebar">
+        <div id="sidebar" class="sidebar sidebar-with-footer">
+            <div class="" data-simplebar style="height: 100%;">
+                <!-- sidebar menu -->
+                <ul class="nav sidebar-inner" id="sidebar-menu">
+                    <li class="has-sub active expand">
+                        <a  class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                           data-target=""
+                           aria-expanded="false" aria-controls="dashboard">
+                            <a href="{% url 'dashbord' %}"/>
+                            <i class="mdi mdi-view-dashboard-outline"></i>
+                            <span class="nav-text">Dashboard</span> <b class="caret"></b>
+                        </a>
+
+                    </li>
+
+                    <li class="has-sub ">
+                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#app"
+                           aria-expanded="false" aria-controls="app">
+                            <i class="mdi mdi-pencil-box-multiple"></i>
+                            <span class="nav-text">SIGNAL</span> <b class="caret"></b>
+                        </a>
+
+                        <ul class="collapse " id="app" data-parent="#sidebar-menu">
+                            <div class="sub-menu">
+                                <li class="">
+                                    <a class="sidenav-item-link" href="{% url 'signals:create-signal' %}">
+                                        <span class="nav-text">Create Signal</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a class="sidenav-item-link" href="{% url 'signals:list-signal' %}">
+                                        <span class="nav-text">All List</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a class="sidenav-item-link" href="{% url 'signals:list-signal-spot' %}">
+                                        <span class="nav-text">Spot List</span>
+                                    </a>
+                                </li>
+
+                                <li class="">
+                                    <a class="sidenav-item-link" href="{% url 'signals:list-signal-future' %}">
+                                        <span class="nav-text">Future List</span>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+
+                    <li class="has-sub ">
+                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                           data-target="#components"
+                           aria-expanded="false" aria-controls="components">
+                            <i class="mdi mdi-folder-multiple-outline"></i>
+                            <span class="nav-text">Vendors</span> <b class="caret"></b>
+                        </a>
+
+                        <ul class="collapse " id="components" data-parent="#sidebar-menu">
+                            <div class="sub-menu">
+                                <li class="">
+                                    <a class="sidenav-item-link" href="{% url 'list-vendors' %}">
+                                        <span class="nav-text">List</span>
+                                    </a>
+                                </li>
+
+                                <li class="">
+                                    <a class="sidenav-item-link" href="#">
+                                        <span class="nav-text">Top Vendors</span>
+                                    </a>
+                                </li>
+
+                                <li class="">
+                                    <a class="sidenav-item-link" href="#">
+                                        <span class="nav-text">History</span>
+
+                                    </a>
+                                </li>
+
+                            </div>
+                        </ul>
+                    </li>
+
+                    <li class="has-sub ">
+                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                           data-target="#icons"
+                           aria-expanded="false" aria-controls="icons">
+                            <i class="mdi mdi-diamond-stone"></i>
+                            <span class="nav-text">Plan</span> <b class="caret"></b>
+                        </a>
+
+                        <ul class="collapse " id="icons" data-parent="#sidebar-menu">
+                            <div class="sub-menu">
+                                <li class="">
+                                    <a class="sidenav-item-link" href="#">
+                                        <span class="nav-text">List </span>
+                                    </a>
+                                </li>
+
+                                <li class="">
+                                    <a class="sidenav-item-link" href="{% url  'plan' %}">
+                                        <span class="nav-text">Subscribe</span>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a   class="sidenav-item-link" href="{% url  'invoice-list'%}"
+                        data-target="#components">
+                            <span class="nav-text">Invoices</span>
+                        </a>
+                    </li>
+
+
+                    <li class="has-sub ">
+                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                           data-target="#forms"
+                           aria-expanded="false" aria-controls="forms">
+                            <i class="mdi mdi-email-mark-as-unread"></i>
+                            <span class="nav-text">SUPPORT</span> <b class="caret"></b>
+                        </a>
+
+                        <ul class="collapse " id="forms" data-parent="#sidebar-menu">
+                            <div class="sub-menu">
+                                <li class="">
+                                    <a class="sidenav-item-link" href="{% url 'tickets:ticket-list'%}">
+                                        <span class="nav-text">Ticket</span>
+                                    </a>
+                                </li>
+
+                                <li class="">
+                                    <a class="sidenav-item-link" href="input-group.html">
+                                        <span class="nav-text">Help</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a class="sidenav-item-link" href="{% url  'edit-customer' request.user.id %}">
+                                        <span class="nav-text">Profile</span>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </aside>
+</div>
+</body>
+{% endif%}

@@ -1,0 +1,98 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+ .imgContainer {
+        max-width: 100px;
+        max-height: 100px;
+        overflow: hidden;
+    }
+
+span.stars, span.stars span {
+    display: block;
+    background: url(stars.png) 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+
+</style>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-default">
+            <div class="card-header card-header-border-bottom">
+                <h2>Vendors Activities</h2>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+
+                    </div>
+
+                    {%for provider_acitivty in provider_acitivties %}
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h3 class="card-title text-primary">{{provider_acitivty.NAME}}</h3>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            {% include 'provider_radarchart.html'%}
+                                        </div>
+                                        <div class="row">
+                                        <img src="{{provider_acitivty.AVATAR}}" width="100" height="100"
+                                             class="card-text imgContainer" alt="Image">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divestar">
+                                    <p id="id_rank" hidden>{{provider_acitivty.RANK}}</p>
+                                    <span id="star1" type="startype" class="fa fa-star checked"></span>
+                                    <span id="star2" type="startype" class="fa fa-star checked"></span>
+                                    <span id="star3" type="startype" class="fa fa-star "></span>
+                                    <span id="star4" type="startype" class="fa fa-star "></span>
+                                    <span id="star5" type="startype" class="fa fa-star "></span>
+                                </div>
+                                <p class="card-text pb-3">Joined {{ provider_acitivty.CREATED|timesince }} ago</p>
+                                <a href="{% url 'vendor-profile' provider_acitivty.ID %}"
+                                   class="btn btn-outline-primary">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+
+  $(document).ready(function(){
+
+    $(".divestar").each(function(i){
+       // alert( $(this).children("#id_rank").html());
+        for (i=1; i<= $(this).children("#id_rank").html() ; i++)
+        {
+          $(this).children("#star"+i).attr("class","fa fa-star checked");
+        }
+      })
+    })
+
+
+
+
+
+</script>
+{% endblock content%}
+
+
+

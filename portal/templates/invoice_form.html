@@ -1,0 +1,84 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="card card-default">
+        <div class="card-header card-header-border-bottom">
+            <h2>Invoice {{ form.id.value }}</h2>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="text-dark">Subscribe to App {{planPrice.plan_name}} Plan for {{planPrice.plan_dure}}
+                        days</h4>
+                </div>
+                <div class="col-lg-6">
+                    <h5 class="text-dark my-3" data-color="red">Important tips!</h5>
+                    <h6 class="text-dark  my-3">
+                        • Send only USDT to this deposit address.<br/>
+                        • Ensure the network is TRC20 (Tron network)<br/>
+                        • Do NOT Send Money to this address after expired time<br/>
+                        • It may take 5~20 minutes for transactions to be completed.<br/>
+                        • Feel free to submit a <a href="{% url 'tickets:ticket-create'  %}">Support Ticket</a> if you
+                        need help.<br/>
+                    </h6>
+                    <div hidden>{{form.customer.as_hidden}} {{form.PlanPrice}}</div>
+
+                    <label for="info">Address Expires In</label>
+                    <div class="alert alert-info" role="alert">
+                        This is a info alert—check it out!
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="trx_id">Input TRX (Hash) Number</label>
+                        <input id="trx_id" name="trx_id" class="form-control" value={{form.trx_id.value}} >
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                    {{form.status.as_hidden}}
+                    <h2 style="color:red" class="text-dark mb-3">
+                        SATAUS :
+                        {% if form.status.value == 1 %}
+                        wating
+                        {% elif form.status.value == 2 %}
+                        done
+                        {% elif form.status.value == 3 %}
+                        failed
+
+                        {% endif %}
+                    </h2>
+
+                    <img src="/static/qr.jpg">
+                    <br/>
+
+                    <input class="alert alert-warning mt-3" id="w_customer" value="{{ form.w_customer.value }}"
+                           name="w_customer" role="alert">
+
+                    </input>
+
+                    <label for="info"> Total Price</label>
+                    <input class="alert alert-info" name="total_price" role="alert"
+                           value="{{ form.total_price.value }}">
+                    $
+                    </input>
+
+                </div>
+                <div class="col-lg-6">
+                    <a href="{% url 'invoice-list' %}" role="button">
+                        <button class="btn btn-primary mr-4">Submit</button>
+                    </a>
+                    <a href="{% url 'tickets:ticket-create'  %}" role="button" id="dropdownMenuLink"
+                       aria-haspopup="true" aria-expanded="false" data-display="static">
+                        <button id="id_submit" type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#save_model">ADD Ticket
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

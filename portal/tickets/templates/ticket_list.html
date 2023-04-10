@@ -1,0 +1,72 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class="card card-default mb-0">
+    <div class="row bg-white no-gutters chat">
+        <div class="col-lg-11 col-xl-12">
+            <div class="chat-right-side">
+                <div class="media media-chat align-items-center mb-0 media-chat-header" href="#">
+                    <img class="rounded-circle mr-3" src="/media/echnical-support.png" alt="Image">
+                    <div class="media-body w-100">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h3 class="heading-title mb-0"><a href="{% url  'edit-customer' request.user.id %}">{{request.user}}</a>
+                            </h3>
+                            <div class="dropdown">
+                                <a href="{% url 'tickets:ticket-create'  %}" role="button" id="dropdownMenuLink"
+                                   aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <button id="id_submit" type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#save_model">ADD Ticket
+                                    </button>
+
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-unstyled border-top mx-5" id="chat-left-content" data-simplebar>
+                    {% for tr in t_detail %}
+                    <li><a href="{% url 'tickets:ticket-add' tr.T_ID %}">
+
+                        <div class="media media-chat media-left">
+                            <div class="media-body">
+                                <p class="message"> Ticket No. {{ tr.T_ID }}#</p>
+                                <p class="message"> {{ tr.REQ|slice:":100" }}...
+                                    <span class="badge badge-danger">{{ tr.PRIORITY }}</span></p>
+                                <p class="message"> {{ tr.RESP|slice:":100" }}... </p>
+                                <div class="date-time"> {{ tr.STATUS }} {{ tr.CREATED|timesince }} ago</div>
+                            </div>
+
+                        </div>
+                    </a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div>
+
+
+        <!--     -->
+
+
+        <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

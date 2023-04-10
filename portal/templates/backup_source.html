@@ -1,0 +1,260 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.non_form_errors }}
+    {{ form.management_form }}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-default">
+                <div class="card-header card-header-border-bottom">
+                    <h2>Create Signal</h2>
+                </div>
+                <div class="card-body">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                            <label for="id_status">status</label>
+                                            <select id="id_status" class="form-control" name="status"
+                                                    value="{{ form.status}}">
+                                                <option value="1"> Active</option>
+                                                <option value="2"> Inactive</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-6 form-group">
+                                            <label for="id_typ">Type</label>
+                                            <select id="id_typ" class="form-control" name="typ" value="{{ form.typ}}">
+                                                <option value="1">Spot</option>
+                                                <option value="2">Future</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-6 id_lev">
+                                <div class="row">
+                                    <div class="col-6 form-group">
+                                        <label for="id_llv">LLV</label>
+                                        <input id="id_llv" type="number" step="any" min="0" class="form-control"
+                                               name="llv">
+                                    </div>
+                                    <div class="col-6 form-group">
+                                        <label for="id_lv_typ">lv_typ</label>
+                                        <input id="id_lv_typ" class="form-control" name="typ" value={{
+                                               form.lv_typ.value}}>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="id_side">Buy/Sell</label>
+                                    <select id="id_side" class="form-control" name="side" value="{{form.side}}">
+                                        <option value="1">Buy</option>
+                                        <option value="2">Sell</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="id_exchange">Exchange</label>
+                                    <select id="id_exchange" class="form-control" name="exchange"
+                                            value={{form.exchange}}
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="id_sl_number">Stop Loss</label>
+                                    <input id="id_sl_number" type="number" step=any min="0" class="form-control"
+                                           name="sl_number">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="id_ep1">Ep #1</label>
+                                    <input id="id_ep1" type="number" step=any min="0" class="form-control"
+                                           name="ep1" value={{form.ep1.value}}>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="id_ep2">Ep #2</label>
+                                    <input id="id_ep2" type="number" step=any class="form-control" name="ep2"
+                                           min="0">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="id_ep3">Ep #3</label>
+                                    <input id="id_ep3" type="number" step=any min="0" class="form-control"
+                                           name="ep3">
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="id_ep4">Ep #4</label>
+                                    <input id="id_ep4" type="number" step=any min="0" class="form-control"
+                                           name="ep4">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-footer pt-5 border-top">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-3 ">
+                                        <div class="form-group">
+                                            <label for="id_number_tp">number_tp</label>
+                                            <select id="id_number_tp" name="number_tp" class="form-control">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 mx-5">
+                                        <h3>TP Percent <span id="id_sum_percent" class="badge badge-warning">0%</span></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ signal_detail_formset.non_form_errors }}
+                            {{ signal_detail_formset.management_form }}
+                            <ul>
+                                {% for f in signal_detail_formset %}
+                                <li class="li_c">
+                                    <div class="d-flex py-1 inline {{ signal_detail_formset.prefix }}">
+                                        <div type="number" required step="any" min="0">{{f.tp.label}} : {{ f.tp }}</div>
+                                        <div class="ml-5" type="number" step="1" min="0">{{f.tp_percent.label}}:
+                                            {{f.tp_percent }}
+                                        </div>
+                                        {% if signal_detail_formset.can_delete %}
+                                        <div class="ml-5">{{ f.DELETE }} {{ f.DELETE.label }}</div>
+                                        {% endif %}
+                                    </div>
+                                </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button id="id_submit" type="submit" class="btn btn-primary btn-default">Submit Signal
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+
+<script>
+
+   $("#id_submit").click(function(){
+        if  ($("#id_sum_percent").html() != '100%'){
+            alert ('Sum of Tps should be 100%');
+        alert($("#id_sum_percent").html() );
+            return false;
+            }
+            else{
+            return true;b
+            }
+   })
+    $(document).ready(function(){
+
+        $('#id_typ').change(function(){
+            //alert( $("#id_typ").find(":selected").val());
+            if ( $("#id_typ").val() == 1 ){
+                $(".id_lev").hide();
+            }else{
+                $(".id_lev").show();
+            }
+        }) // end id_typ change
+
+       $("#id_number_tp").change(function(){
+        // alert( $("#id_number_tp").find(":selected").val());
+            $(".li_c").hide();
+            for (let i = 1; i <= $("#id_number_tp").find(":selected").val(); ++i) {
+                $(".li_c:nth-child("+i+")").fadeIn();
+
+            }
+        }) // end number tp change
+        $(".li_c").hide();
+        $(".id_lev").hide();
+        $(".li_c").first().fadeIn();
+
+        $(".ml-5").change(function(){
+            var p_sum_percent=0;
+            var i=0;
+             $(".ml-5").each(function(){
+             //alert($("#id_signaldt_set-"+i+"-tp_percent").val());
+                p_sum_percent +=  parseInt($("#id_signaldt_set-"+i+"-tp_percent").val());
+                i++;
+                })
+
+                 if (p_sum_percent < 100) {
+                    $("#id_sum_percent").attr('class','badge badge-warning');
+                    $("#id_sum_percent").html(p_sum_percent+'%');
+                 }else if (p_sum_percent == 100){
+                    $("#id_sum_percent").attr('class','badge badge-success');
+                    $("#id_sum_percent").html(p_sum_percent+'%');
+                 }else if (p_sum_percent > 100){
+                    $("#id_sum_percent").attr('class','badge badge-danger');
+                    $("#id_sum_percent").html(p_sum_percent+'%');
+                 }
+
+        })
+////////////////////////////////////////
+       $("#id_exchange").change(function(){
+       //alert( $("#id_exchange").find(":selected").html());
+       //alert( $("#id_ep3").val());
+        var p_exchange = $("#id_exchange").find(":selected").html();
+        //alert( p_exchange);
+        $.ajax({
+            url: '/ajax/create-signal/',
+            data: {
+                'p_exchange': p_exchange,
+                  },
+            dataType: 'json',
+            success: function (data) {
+             //  $("#id_ep1").html(data.p_exchange);
+               $("#id_ep1").val(data.p_exchange);
+            }
+        }); //ajax
+    })
+////////////////////////////////////////
+     })
+
+
+</script>
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,162 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <h1> Profile page</h1>
+            <p>
+                <label for="id_id">Id:</label>
+                <select name="id" required="" id="id_id">
+
+                    <option value="1" selected="">shokri.m</option>
+
+                    <option value="21">Reza</option>
+
+                    <option value="65">moh02</option>
+                </select>
+            </p>
+            <p>
+                <label for="id_first_name">First name:</label>
+                <input type="text" name="first_name" value="Mohammad" maxlength="150" required="" id="id_first_name">
+            </p>
+            <p>
+                <label for="id_last_name">Last name:</label>
+                <input type="text" name="last_name" value="ShokRT" maxlength="150" required="" id="id_last_name">
+            </p>
+            <p>
+                <label for="id_phone">Phone:</label>
+                <input type="text" name="phone" value="091122222" maxlength="13" required="" id="id_phone">
+            </p>
+            <p>
+                <label for="id_email">Email:</label>
+                <input type="email" name="email" value="shokri@gmail.com" maxlength="254" id="id_email">
+           </p>
+            <p>
+                <label for="id_avatar">Avatar:</label>
+                <input type="file" name="avatar" accept="image/*" id="id_avatar">
+            </p>
+            <p>
+                <label for="id_status">Status:</label>
+                <input type="number" name="status" value="2" required="" id="id_status">
+
+            </p>
+        </h4>
+        <button type="submit">Go</button>
+    </form>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form method="POST" action="">
+
+
+  <p>
+    <label for="id_first_name">First name:</label>
+    <input type="text" name="first_name" value="Mohammad" maxlength="150" required="" id="id_first_name">
+  </p>
+  <p>
+    <label for="id_last_name">Last name:</label>
+    <input type="text" name="last_name" value="ShokrI" maxlength="150" required="" id="id_last_name">
+  </p>
+  <p>
+    <label for="id_phone">Phone:</label>
+    <input type="text" name="phone" value="091122222" maxlength="13" required="" id="id_phone">
+  </p>
+  <p>
+    <label for="id_email">Email:</label>
+    <input type="email" name="email" value="your@gmail.com" maxlength="254" id="id_email">
+  </p>
+  <p>
+    <label for="id_avatar">Avatar:</label>
+    <input type="file" name="avatar" accept="image/*" id="id_avatar">
+  </p>
+  <p>
+    <label for="id_status">Status:</label>
+    <input type="number" name="status" value="2" required="" id="id_status">
+  </p>
+  <p>
+    <label for="id_plan">Plan:</label>
+    <select name="plan" id="id_plan">
+  <option value="" selected="">---------</option>
+
+  <option value="1">Basic</option>
+
+  <option value="2">Pro</option>
+
+  <option value="5">Portfolio Manager</option>
+
+</select>
+
+
+  </p>
+
+
+  <p>
+    <label for="id_planDuration">PlanDuration:</label>
+    <select name="planDuration" id="id_planDuration">
+  <option value="" selected="">---------</option>
+
+  <option value="1">Monthly</option>
+
+  <option value="2">Quarterly</option>
+
+  <option value="3">Annually</option>
+
+</select>
+
+
+
+
+  </p>
+<!--                            <input type="text" name="first_name" value="Mohammad" maxlength="150" required=""-->
+<!--                                   id="id_first_name">-->
+<!--                            <input type="text" name="last_name" value="Mohammad" maxlength="150" required=""-->
+<!--                                   id="id_last_name">-->
+<!--                            <input type="text" name="phone" value="+199" maxlength="150" required="" id="id_phone">-->
+<!--                            <input type="text" name="email" value="Mohammad" maxlength="150" required="" id="id_email">-->
+<!--                            <div class="d-flex justify-content-end mt-5">-->
+                                <button type="submit" class="btn btn-primary mb-2 btn-pill">Update Profile
+                                </button>
+
+                        </form>

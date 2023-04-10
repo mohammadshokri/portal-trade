@@ -1,0 +1,82 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+ .imgContainer {
+        max-width: 100px;
+        max-height: 100px;
+        overflow: hidden;
+    }
+
+span.stars, span.stars span {
+    display: block;
+    background: url(stars.png) 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+</style>
+
+<div class="bg-light">
+    <div class="mt-12 bg-light">
+            <div class="row">
+                {%for provider_acitivty in provider_acitivties %}
+                <div class="col-md-5 m-2">
+                    <div class="card shadow" style="height: 18rem">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-9 m-2">
+                                    <p class="card-title fw-bold m-3">{{provider_acitivty.2}}</p>
+                                </div>
+                                <div class="divestar">
+                                    <p id="id_rank" hidden >{{provider_acitivty.6}}</p>
+                                    <span id="star1" type="startype" class="fa fa-star "></span>
+                                    <span id="star2" type="startype" class="fa fa-star "></span>
+                                    <span id="star3" type="startype" class="fa fa-star "></span>
+                                    <span id="star4" type="startype" class="fa fa-star "></span>
+                                    <span id="star5" type="startype" class="fa fa-star "></span>
+                                </div>
+
+                                <div class="col-md-3 m-2">
+                                    <img src="/static/img/icon-2.png"
+                                         class="card-text imgContainer" alt="Image">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="card-text"> Joined {{ provider_acitivty.5|timesince }} ago</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#">View
+                                    Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+<hr>
+<a href="{% url 'home' %}">Back ...</a>
+
+<script>
+
+  $(document).ready(function(){
+
+    $(".divestar").each(function(i){
+       // alert( $(this).children("#id_rank").html());
+        for (i=1; i<= $(this).children("#id_rank").html() ; i++)
+        {
+          $(this).children("#star"+i).attr("class","fa fa-star checked");
+        }
+      })
+    })
+
+</script>
+{% endblock content%}
+
+
+

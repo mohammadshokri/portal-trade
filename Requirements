@@ -1,0 +1,50 @@
+
+master detail view django
+
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views
+
+
+pip freeze
+
+pip install django-extra-views
+pip install django-crispy-forms
+pip install crispy_tailwind
+pip install django-widget-tweaks
+pip install django-bootstrap-form
+pip install django django-bootstrap-v5
+pip install pillow
+
+insert into all_status(TABLE_NAME,NAME,VAL,DSC) values (
+'SIGNAL'
+,'status'
+,11
+,'canceled'
+)
+
+
+ALTER TABLE CUSTOMER  
+MODIFY (creATED DEFAULT sysdate );
+
+select 'ALTER TABLE  '||table_name||' MODIFY (UPDATED DEFAULT sysdate );' from user_tables a
+union all
+select 'ALTER TABLE  '||table_name||' MODIFY (creATED DEFAULT sysdate );' from user_tables a
+
+
+INSERT INTO "TRADE"."PLAN_FEATURE" (NAME, STATUS) VALUES ('Futures Trade' ,1 );
+INSERT INTO "TRADE"."PLAN_FEATURE" (NAME, STATUS) VALUES ('Copy Trade Accounts' ,1 );
+INSERT INTO "TRADE"."PLAN_FEATURE" (NAME, STATUS) VALUES ('Exchange Accounts' ,1 );
+INSERT INTO "TRADE"."PLAN_FEATURE" (NAME, STATUS) VALUES ('Paper Trade' ,1 );
+INSERT INTO "TRADE"."PLAN_FEATURE" (NAME, STATUS) VALUES ('Trading View' ,1 );
+INSERT INTO "TRADE"."PLAN_FEATURE" (NAME, STATUS) VALUES ('Vendor Trading' ,1 );
+
+INSERT INTO "TRADE"."PLAN_FEATURE" (NAME, STATUS) VALUES ('Price Alerts' ,1 );
+INSERT INTO "TRADE"."PLAN_FEATURE" (NAME, STATUS) VALUES ('Personal Signals' ,1 );
+RADE"."PLAN_FEATURE" (NAME, STATUS) VALUES ('Copy Trade Accounts,1 );
+	
+
+SELECT  DISTINCT 'ALTER SYSTEM KILL SESSION ''' || B.SID || ',' || B.SERIAL# ||                ''' IMMEDIATE;'
+  FROM V$SESSION B
+  where B.USERNAME = 'TRADE'
+  and program ='python.exe'
+	
+	

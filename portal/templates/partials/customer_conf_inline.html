@@ -1,0 +1,52 @@
+<div class="card card-table-border-none  border-0 recent-orders " id="recent-orders">
+    <div class="card-header justify-content-between">
+        <h2>Exchange Account</h2>
+        <div class="date-range-report ">
+
+        </div>
+
+        <table class="table card-table table-responsive table-responsive-large" style="width:100%">
+            <thead>
+            <tr>
+                <th>Created time</th>
+                <th>Name</th>
+                <th class="d-none d-lg-table-cell">Copy trade</th>
+                <th class="d-none d-lg-table-cell">Status</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {%for i in customerConfig %}
+            <tr>
+                <td class="d-none d-lg-table-cell">{{ i.created|timesince }} ago</td>
+                <td class="d-none d-lg-table-cell">{{ i.name }}</td>
+                <td class="d-none d-lg-table-cell">{{ i.api_key }}</td>
+                <td>
+                    <span class="badge badge-success">
+                {% if i.status == 1 %}
+                        Active
+                        {% elif i.status == 2 %}
+                        Inactive
+                        {% endif %}
+                    </span>
+                </td>
+                <td class="text-right">
+                              <a href="{% url  'edit-account' i.id %}">Detail</a>
+                              <a href="{% url  'delete-account' i.id %}">Delete</a>
+                   </td>
+            </tr>
+            {% endfor%}
+            </tbody>
+        </table>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="{% url 'create-account' %}" role="button" id="dropdownMenuLink"
+           aria-haspopup="true" aria-expanded="false" data-display="static">
+            <button id="id_submit" type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#save_model">Add Account
+            </button>
+        </a>
+
+    </div>
+
+</div>

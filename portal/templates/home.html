@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+    <div>
+ {% if user.is_authenticated == True and request.user.id == customer.id_id %}
+    <div>
+        <h1> Profile page...</h1>
+        <h4> {{customer.first_name}}</h4>
+        <h4> {{customer.last_name}}</h4>
+        <h4> {{customer.phone}}</h4>
+        <h4> {{customer.created|timesince}} ago</h4>
+    </div>
+    {%endif %}
+</div>
+{% endblock  %}

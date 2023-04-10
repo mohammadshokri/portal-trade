@@ -1,0 +1,32 @@
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+<h1>chart</h1>
+<script src="/static/js/chart.js"></script>
+
+<script>
+
+   const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [{%for i in chartLabel%} '{{i}}', {% endfor%}],
+      datasets: [{
+        label: '# of Votes',
+        data: [{%for i in provider_profile%}  '{{i.PROF1}}','{{i.PROF7}}','{{i.PROF30}}','{{i.PROF365}}','{{i.PROFALL}}',{% endfor%}],
+        borderWidth: 1,
+        backgroundColor: ['rgba(54, 162, 235, 0.2)',],
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+</script>

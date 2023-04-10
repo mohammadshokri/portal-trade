@@ -1,0 +1,11 @@
+<section>
+    {% if status == 0 %}
+    <a class="card-text fw-bold m-3 font-size: small" href="{% url 'extend-plan' plan_id %}"> Upgrade</a>
+    {% else %}
+    <p class="card-text fw-bold m-3 font-size: small">Current Plan</p>
+    {% if status == 2 %}
+    <p class="card-text fw-bold m-3 font-size: small">Expired</p>
+    <a class="card-text fw-bold m-3 font-size: small" href="{% url 'extend-plan' plan_id %}"> Extend Subscription</a>
+    {% endif %}
+    {% endif %}
+</section>

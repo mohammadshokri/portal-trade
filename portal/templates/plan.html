@@ -1,0 +1,173 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="bg-light">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow " style="height: 60rem">
+                    <h3 class="card-title fw-bold m-3 text-dark" > {{plan.0.0 }}</h3>
+                    <p class="card-text mx-3 font-size: small"> {{plan.0.1 }}</p>
+                    <hr/>
+                    <div class="card-body">
+                        <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="card-title fw-bold mx-3 font-size: small">Price</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for p in plan_price %}
+                            {% if p.0 == plan.0.0 %}
+                            <tr>
+                                <td>price</td>
+                                <td> {{p.1 }}</td>
+                                <td>{{p.2 }}</td>
+                            </tr>
+                            {% endif%}
+                            {%endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr/>
+                    <p class="card-text mx-3">{% include "partials/plan_inline.html" with plan_id=plan.0.2 %}</p>
+                    <hr/>
+                    <div class="card-body">
+                        <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="card-title fw-bold mx-3 font-size: small">Features</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for p in plan_feature %}
+                            {% if p.2 == plan.0.2 %}
+                            <tr>
+                                <td>{{p.0}}</td>
+                                <td>{{p.1}}</td>
+                            </tr>
+                            {% endif%}
+                            {%endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow " style="height: 60rem">
+                    <h3 class="card-title fw-bold m-3  text-dark"> {{plan.1.0 }}</h3>
+                    <p class="card-text mx-3 font-size: small"> {{plan.1.1 }}</p>
+                    <hr/>
+                    <div class="card-body">
+                        <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="card-title fw-bold mx-3 font-size: small">Price</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for p in plan_price %}
+                            {% if p.0 == plan.1.0 %}
+                            <tr>
+                                <td>price</td>
+                                <td> {{p.1 }}</td>
+                                <td>{{p.2 }}</td>
+                            </tr>
+                            {% endif%}
+                            {%endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr/>
+                    <p class="card-text mx-3">{% include "partials/plan_inline.html" with plan_id=plan.1.2 %}</p>
+                    <hr/>
+                    <div class="card-body">
+                        <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="card-title fw-bold mx-3 font-size: small">Features</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for p in plan_feature %}
+                            {% if p.2 == plan.1.2 %}
+                            <tr>
+                                <td>{{p.0}}</td>
+                                <td>{{p.1}}</td>
+                            </tr>
+                            {% endif%}
+                            {%endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow " style="height: 60rem">
+                    <h3 class="card-title fw-bold m-3  text-dark"> {{plan.2.0 }}</h3>
+                    <p class="card-text mx-3 font-size: small"> {{plan.2.1 }}</p>
+                    <hr/>
+                    <div class="card-body">
+                        <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="card-title fw-bold mx-3 font-size: small">Price</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for p in plan_price %}
+                            {% if p.0 == plan.2.0 %}
+                            <tr>
+                                <td>price</td>
+                                <td> {{p.1 }}</td>
+                                <td>{{p.2 }}</td>
+                            </tr>
+                            {% endif%}
+                            {%endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr/>
+                    <p class="card-text mx-3">{% include "partials/plan_inline.html" with plan_id=plan.2.2 %}</p>
+                    <hr/>
+                    <div class="card-body">
+                        <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="card-title fw-bold mx-3 font-size: small">Features</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for p in plan_feature %}
+                            {% if p.2 == plan.2.2 %}
+                            <tr>
+                                <td>{{p.0}}</td>
+                                <td>{{p.1}}</td>
+                            </tr>
+                            {% endif%}
+                            {%endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+
+    });
+
+</script>
+{% endblock  %}

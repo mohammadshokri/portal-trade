@@ -1,0 +1,33 @@
+
+<script src="/static/assets/plugins/jquery/jquery.min.js"></script>
+<script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/static/assets/js/toastr.js"></script>
+<script src="/static/assets/js/sleek.js"></script>
+
+<style>
+     .home-container {
+        display: grid;
+        grid-template-columns: 0fr 12fr;
+        }
+}
+</style>
+<!-- Javascript -->
+
+{% include 'top-bar.html' %}
+
+<div class="home-container bg-light">
+    <div>
+        {% include 'base_menu.html'%}
+    </div>
+    {% block content %}
+
+    {% endblock content %}
+
+</div>
+
+
+
+
+<link href="/static/assets/css/toastr.css" rel="stylesheet">
+
+

@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+     .home-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        }
+</style>
+
+<div class="home-container">
+    <div>
+        {% include 'base_menu.html' %}
+    </div>
+    <div>
+      <h1>Vendors Activity...</h1>
+   {%for  provider_acitivty in provider_acitivties   %}
+      <tr>
+          <td>provider_id  {{  provider_acitivty}}</td><br/>
+          <td>{{provider_acitivty.2}}</td><br/>
+          <td>Joined  {{ provider_acitivty.4|timesince }} ago</td><br/>
+          <hr/>
+      </tr>
+      {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+
+

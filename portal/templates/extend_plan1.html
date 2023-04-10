@@ -1,0 +1,151 @@
+{% extends 'main.html' %}
+{% block content %}
+<form method="post" id="id_page">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-default">
+                <div class="card-header card-header-border-bottom">
+                    <h2>Subscribe to Vendor Services</h2>
+                </div>
+                <div class="card-body">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="id_plan_duration">plan duration</label>
+
+                                    <select id="id_plan_duration" class="form-control" name="plan_duration"
+                                            value={{plan_duration.planDuration}}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_provider_name">provider name</label>
+                                    <select id="id_provider_name" class="form-control" name="provider_name"
+                                            value={{provider_name.providerName}}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+
+                                    <div class="row">
+                                        <div class="col-6 my-3  align-self-center">
+                                            <label class="sr-only" for="gift_id">Gift Code</label>
+                                            <input id="gift_id" type="" class="form-control" name="gift_id" placeholder="Gift Code">
+                                        </div>
+                                        <div class="col-6  align-self-center">
+                                            <button id="id_apply" type="button" class="btn btn-primary"
+                                                    data-toggle="modal" data-target="#save_model">Apply
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="id_plan_name">plan name</label>
+                                    <select id="id_plan_name" class="form-control" name="plan_name"
+                                            value={{plan_name.planName}}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_service_name">service name</label>
+                                    <select id="id_service_name" class="form-control" name="service_name"
+                                            value={{service_name.serviceName}}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table">
+                            <thead class="table">
+                            <tr>
+                                <th scope="col">No#</th>
+                                <th scope="col">Service Price</th>
+                                <th scope="col">Service Price(discount)</th>
+                                <th scope="col">Provider</th>
+                                <th scope="col">Provider(discount)</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Total(discount)</th>
+
+                                <th scope="col">Invoice</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td><a id="id_invoice" href="{% url 'invoice-form'  pr=2 tpr=5%}">Subscribe</a>
+                                </td>
+                                <td><p id="price_id">0</p></td>
+                                <td><p id="price_with_disc_id">0</p></td>
+                                <td><p id="provider_price_id"></p></td>
+                                <td><p id="provider_price_with_disc_id"></p></td>
+                                <td><p id="total_price_id"></p></td>
+                                <td><p id="total_price_with_disc_id"></td>
+                                <td><p id="invoice_id"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<button type="submit">Go</button>
+
+<p>html(data.planPrice)
+</p>
+
+<script>
+
+    $("#id_page").change(function(){
+        var plan_duration = $("#id_plan_duration").val();
+        var service_name = $("#id_service_name").val();
+        var plan_name = $("#id_plan_name").val();
+        var provider_name = $("#id_provider_name").val();
+        var total_price = $("#id_total_price").val();
+        var total_price_with_disc = $("#id_total_price_with_disc").val();
+        $.ajax({
+            url: '/ajax/extend-plan/',
+            data: {
+                'plan_duration': plan_duration,
+                'plan_name':plan_name,
+                'service_name':service_name,
+                'total_price' :total_price,
+                'provider_name':provider_name,
+             },
+            dataType: 'json',
+            success: function (data) {
+
+            var url = "{% url 'invoice-form' pr=-1 tpr=-2 %}".replace( '-1', tpr=data.planPrice_id).replace( '-2', tpr=data.total_price_with_disc);
+               $("#id_invoice").attr("href", url );
+               $("#price_id").html(data.planPrice);
+               $("#price_with_disc_id").html(data.price_with_disc);
+               $("#provider_price_id").html(data.provider_name); // this is price of provider cost
+               $("#provider_price_with_disc_id").html(data.provider_name_disc); // this is price of provider cost with discount
+               $("#total_price_id").html(data.total_price);
+               $("#total_price_with_disc_id").html(data.total_price_with_disc);
+               $("#invoice_id").html(data.service_name);
+            }
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+{% endblock %}
+
+

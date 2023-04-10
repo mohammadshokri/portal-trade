@@ -1,0 +1,51 @@
+<link href="/static/css/crypto.css" rel="stylesheet">
+<script src="/static/js/Chart.bundle.js"></script>
+<link href="/static/css/googleapis.css" rel="stylesheet">
+
+<div class="row mb-3">
+
+    <div class="col-md-4">
+        <crypto class="crypto">
+            <card class="asset-info">
+                <div class="title">
+                    <img src="/static/crypto/btc.svg" width="40" height="40">
+                    <h1 class="asset-title">Bitcoin</h1>
+                </div>
+                <div class="details">
+                    <h2 class="asset-price" id="btcPrice"></h2>
+                </div>
+            </card>
+            <canvas id="btcChart"></canvas>
+        </crypto>
+    </div>
+    <div class="col-md-4">
+        <crypto class="crypto">
+            <card class="asset-info">
+                <div class="title">
+                    <img src="/static/crypto/eth.svg" width="40" height="40">
+                    <h1 class="asset-title">Ethereum</h1>
+                </div>
+                <div class="details">
+                    <h2 class="asset-price" id="ethPrice"></h2>
+                </div>
+            </card>
+            <canvas id="ethereumChart"></canvas>
+        </crypto>
+    </div>
+    <div class="col-md-4">
+        <crypto class="crypto">
+            <card class="asset-info">
+                <div class="title">
+                    <img src="/static/crypto/atm.svg" width="40" height="40">
+                    <h1 class="asset-title">Cosmos</h1>
+                </div>
+                <div class="details">
+                    <h2 class="asset-price" id="cosmosPrice"></h2>
+                </div>
+            </card>
+            <canvas id="cosmosChart"></canvas>
+        </crypto>
+    </div>
+</div>
+
+<script src="/static/js/app.js"></script>
