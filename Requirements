@@ -3,7 +3,8 @@ master detail view django
 
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views
 
-
+pip freeze > requirements.txt
+pip install -r requirements.txtp
 pip freeze
 
 pip install django-extra-views
