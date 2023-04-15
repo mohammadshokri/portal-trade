@@ -4,40 +4,39 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('base', '0001_initial'),
+        ("base", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='customerconfig',
-            name='close_trade',
+            model_name="customerconfig",
+            name="close_trade",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='grace_percent',
+            model_name="customerconfig",
+            name="grace_percent",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='min_symb_interval',
+            model_name="customerconfig",
+            name="min_symb_interval",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='trailing_en',
+            model_name="customerconfig",
+            name="trailing_en",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='trailing_stop',
+            model_name="customerconfig",
+            name="trailing_stop",
             field=models.CharField(blank=True, max_length=50, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='trailing_tp',
+            model_name="customerconfig",
+            name="trailing_tp",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
     ]

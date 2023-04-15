@@ -4,30 +4,29 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('base', '0003_alter_customerconfig_number_tp_and_more'),
+        ("base", "0003_alter_customerconfig_number_tp_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='customerconfig',
-            name='ep1_percent',
+            model_name="customerconfig",
+            name="ep1_percent",
             field=models.IntegerField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='ep2_percent',
+            model_name="customerconfig",
+            name="ep2_percent",
             field=models.IntegerField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='ep3_percent',
+            model_name="customerconfig",
+            name="ep3_percent",
             field=models.IntegerField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='ep4_percent',
+            model_name="customerconfig",
+            name="ep4_percent",
             field=models.IntegerField(blank=True, null=True),
         ),
     ]

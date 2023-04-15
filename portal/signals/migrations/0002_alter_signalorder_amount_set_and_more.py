@@ -4,65 +4,64 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('signals', '0001_initial'),
+        ("signals", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='signalorder',
-            name='amount_set',
+            model_name="signalorder",
+            name="amount_set",
             field=models.IntegerField(blank=True, default=0),
         ),
         migrations.AlterField(
-            model_name='signalorder',
-            name='created',
+            model_name="signalorder",
+            name="created",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='signalorder',
-            name='ep_pre',
+            model_name="signalorder",
+            name="ep_pre",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='signalorder',
-            name='side',
+            model_name="signalorder",
+            name="side",
             field=models.IntegerField(default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='signalorder',
-            name='sig_typ',
+            model_name="signalorder",
+            name="sig_typ",
             field=models.CharField(max_length=100, null=True),
         ),
         migrations.AlterField(
-            model_name='signalorder',
-            name='sl',
+            model_name="signalorder",
+            name="sl",
             field=models.FloatField(blank=True, default=0),
         ),
         migrations.AlterField(
-            model_name='signalorder',
-            name='symb',
+            model_name="signalorder",
+            name="symb",
             field=models.CharField(max_length=20, null=True),
         ),
         migrations.AlterField(
-            model_name='signalorder',
-            name='trail_en',
+            model_name="signalorder",
+            name="trail_en",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='signalorder',
-            name='trail_sl',
+            model_name="signalorder",
+            name="trail_sl",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='signalorder',
-            name='trail_tp',
+            model_name="signalorder",
+            name="trail_tp",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='signalorder',
-            name='updated',
+            model_name="signalorder",
+            name="updated",
             field=models.DateTimeField(blank=True, null=True),
         ),
     ]

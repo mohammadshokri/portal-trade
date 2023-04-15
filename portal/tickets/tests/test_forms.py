@@ -9,14 +9,14 @@ class TicketFormTestCase(TestCase):
     @classmethod  # ran once at beginning of testing.
     def setUpTestData(cls):
         ticket = baker.make(
-            'Ticket',
-            ticketType=baker.make('TicketType'),
-            project=baker.make('Project'),
+            "Ticket",
+            ticketType=baker.make("TicketType"),
+            project=baker.make("Project"),
             subject="TEST 1",
             description="THIS IS A TEST 1.",
-            priority='Low',
+            priority="Low",
             status="Backlog",
-            creator=baker.make('User'),
+            creator=baker.make("User"),
         )
         ticket.save()
 
@@ -26,13 +26,13 @@ class TicketFormTestCase(TestCase):
     def test_ticket_form_is_valid(self):
         testTicket = self.get_test_ticket()
         data = {
-            'ticketType': testTicket.ticketType,
-            'subject': testTicket.subject,
-            'project': testTicket.project,
-            'description': testTicket.description,
+            "ticketType": testTicket.ticketType,
+            "subject": testTicket.subject,
+            "project": testTicket.project,
+            "description": testTicket.description,
             # 'priority': testTicket.priority,
             # 'status': testTicket.status,
-            'creator': testTicket.creator,
+            "creator": testTicket.creator,
             # 'owner': testTicket.owner
         }
         form = TicketForm(data)

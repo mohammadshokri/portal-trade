@@ -7,19 +7,30 @@ from django.forms import inlineformset_factory
 
 
 TYPE_CHOICE = [
-    (1, 'Spot'),
-    (2, 'Future'),
+    (1, "Spot"),
+    (2, "Future"),
 ]
 SIDE_CHOICE = [
-    (1, 'Buy'),
-    (2, 'Sell'),
+    (1, "Buy"),
+    (2, "Sell"),
 ]
 STATUS_CHOICE = [
-    (1, 'Active'),
-    (2, 'Inactive'),
+    (1, "Active"),
+    (2, "Inactive"),
 ]
 
-NUMBER_TP_CHOICE =[(1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10)]
+NUMBER_TP_CHOICE = [
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 10),
+]
 
 
 ################Singal Create Forms
@@ -46,28 +57,31 @@ class SignalForm(forms.ModelForm):
     #         raise forms.ValidationError('Ep2 cannot be Null or Negative number')
     class Meta:
         model = models.Signal
-        fields ='__all__'
+        fields = "__all__"
         # = forms.ChoiceField(choices=TYPE_CHOICE)
+
 
 class SignalDetailForm(forms.ModelForm):
     tp = forms.FloatField(min_value=0)
+
     class Meta:
         model = models.SignalDt
-        fields = '__all__'
+        fields = "__all__"
 
 
-SignalDetailInlineFormset = inlineformset_factory(models.Signal,
-                                                  models.SignalDt,
-                                                  form=SignalDetailForm,
-                                                  extra=10,
-                                                  can_delete=False,
-                                                  validate_min=True,
-                                                  min_num=0,
-                                                  # max_num=10,
-                                                  # fk_name=None,
-                                                  # fields=None, exclude=None, can_order=False,
-                                                  #max_num=None, formfield_callback=None,
-                                                  # widgets=None, validate_max=False, localized_fields=None,
-                                                  # labels=None, help_texts=None, error_messages=None,
-                                                  #  field_classes=None
-                                                  )
+SignalDetailInlineFormset = inlineformset_factory(
+    models.Signal,
+    models.SignalDt,
+    form=SignalDetailForm,
+    extra=10,
+    can_delete=False,
+    validate_min=True,
+    min_num=0,
+    # max_num=10,
+    # fk_name=None,
+    # fields=None, exclude=None, can_order=False,
+    # max_num=None, formfield_callback=None,
+    # widgets=None, validate_max=False, localized_fields=None,
+    # labels=None, help_texts=None, error_messages=None,
+    #  field_classes=None
+)

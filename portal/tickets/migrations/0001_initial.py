@@ -5,64 +5,135 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('base', '0001_initial'),
+        ("base", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Ticket',
+            name="Ticket",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('priority', models.CharField(blank=True, choices=[('Low', 'Low'), ('Medium', 'Medium'), ('High', 'High'), ('Critical', 'Critical')], max_length=10)),
-                ('status', models.CharField(blank=True, choices=[('Open', 'Open'), ('Waiting On Submitter', 'Waiting On Submitter'), ('In Progress', 'In Progress'), ('Waiting On Support', 'Waiting On Support'), ('Resolved', 'Resolved')], max_length=40)),
-                ('updated', models.DateTimeField(blank=True, null=True)),
-                ('created', models.DateTimeField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "priority",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("Low", "Low"),
+                            ("Medium", "Medium"),
+                            ("High", "High"),
+                            ("Critical", "Critical"),
+                        ],
+                        max_length=10,
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("Open", "Open"),
+                            ("Waiting On Submitter", "Waiting On Submitter"),
+                            ("In Progress", "In Progress"),
+                            ("Waiting On Support", "Waiting On Support"),
+                            ("Resolved", "Resolved"),
+                        ],
+                        max_length=40,
+                    ),
+                ),
+                ("updated", models.DateTimeField(blank=True, null=True)),
+                ("created", models.DateTimeField(blank=True, null=True)),
             ],
             options={
-                'db_table': 'ticket',
+                "db_table": "ticket",
             },
         ),
         migrations.CreateModel(
-            name='TicketSubject',
+            name="TicketSubject",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('status', models.IntegerField(blank=True, default=1)),
-                ('dsc', models.CharField(blank=True, max_length=300, null=True)),
-                ('updated', models.DateTimeField(blank=True, null=True)),
-                ('created', models.DateTimeField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("status", models.IntegerField(blank=True, default=1)),
+                (
+                    "dsc",
+                    models.CharField(blank=True, max_length=300, null=True),
+                ),
+                ("updated", models.DateTimeField(blank=True, null=True)),
+                ("created", models.DateTimeField(blank=True, null=True)),
             ],
             options={
-                'db_table': 'ticket_subject',
+                "db_table": "ticket_subject",
             },
         ),
         migrations.CreateModel(
-            name='TicketDetail',
+            name="TicketDetail",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('status', models.IntegerField(default=1)),
-                ('req', models.CharField(blank=True, max_length=500, null=True)),
-                ('resp', models.CharField(blank=True, max_length=1000, null=True)),
-                ('updated', models.DateTimeField(blank=True, null=True)),
-                ('created', models.DateTimeField(blank=True, null=True)),
-                ('ticket', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='tickets.ticket')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("status", models.IntegerField(default=1)),
+                (
+                    "req",
+                    models.CharField(blank=True, max_length=500, null=True),
+                ),
+                (
+                    "resp",
+                    models.CharField(blank=True, max_length=1000, null=True),
+                ),
+                ("updated", models.DateTimeField(blank=True, null=True)),
+                ("created", models.DateTimeField(blank=True, null=True)),
+                (
+                    "ticket",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="tickets.ticket",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'ticket_dt',
+                "db_table": "ticket_dt",
             },
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='ticketSubject',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tickets.ticketsubject'),
+            model_name="ticket",
+            name="ticketSubject",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="tickets.ticketsubject",
+            ),
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='user',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='base.customer'),
+            model_name="ticket",
+            name="user",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="base.customer",
+            ),
         ),
     ]

@@ -4,38 +4,37 @@ from django.contrib.auth.models import User
 
 
 class Command(BaseCommand):
-    help = '-p: print all the tickets | ' + \
-            '-d: delete all the tickets | '
+    help = "-p: print all the tickets | " + "-d: delete all the tickets | "
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '-p',
-            action='store_true',
+            "-p",
+            action="store_true",
             help="Print all the current tickets.",
         )
         parser.add_argument(
-            '--deletetickettypes',
-            action='store_true',
+            "--deletetickettypes",
+            action="store_true",
             help="Delete all the ticket types.",
         )
         parser.add_argument(
-            '--deletetickets',
-            action='store_true',
+            "--deletetickets",
+            action="store_true",
             help="Delete all the current tickets.",
         )
         parser.add_argument(
-            '--deleteprojects',
-            action='store_true',
+            "--deleteprojects",
+            action="store_true",
             help="Delete all the current projects.",
         )
         parser.add_argument(
-            '--deleteusers',
-            action='store_true',
+            "--deleteusers",
+            action="store_true",
             help="Delete all the current users with names longer than 20 chars.",
         )
         parser.add_argument(
-            '--totaldelete',
-            action='store_true',
+            "--totaldelete",
+            action="store_true",
             help="Delete all the current users, projects, tickettypes.",
         )
 
@@ -65,22 +64,22 @@ class Command(BaseCommand):
                 user.delete()
 
     def handle(self, *args, **options):
-        if options['p']:
+        if options["p"]:
             print(Ticket.objects.all())
 
-        if options['deletetickettypes']:
+        if options["deletetickettypes"]:
             self.delete_tickettypes()
 
-        if options['deletetickets']:
+        if options["deletetickets"]:
             self.delete_tickets()
 
-        if options['deleteprojects']:
+        if options["deleteprojects"]:
             self.delete_projects()
 
-        if options['deleteusers']:
+        if options["deleteusers"]:
             self.delete_users()
 
-        if options['totaldelete']:
+        if options["totaldelete"]:
             self.delete_projects()
             self.delete_tickets()
             self.delete_users()

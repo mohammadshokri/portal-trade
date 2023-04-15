@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('base', '0002_alter_customerconfig_close_trade_and_more'),
+        ("base", "0002_alter_customerconfig_close_trade_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='customerconfig',
-            name='number_tp',
+            model_name="customerconfig",
+            name="number_tp",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='use_ep_percent',
+            model_name="customerconfig",
+            name="use_ep_percent",
             field=models.IntegerField(blank=True, default=1, null=True),
         ),
     ]

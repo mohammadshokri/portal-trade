@@ -1,5 +1,5 @@
 from django import forms
-from .models import Ticket , TicketDetail, TicketSubject
+from .models import Ticket, TicketDetail, TicketSubject
 from django.forms import ModelForm
 from django.forms import inlineformset_factory
 
@@ -7,12 +7,14 @@ from django.forms import inlineformset_factory
 class TicketForm(ModelForm):
     class Meta:
         model = Ticket
-        fields = ['priority','ticketSubject']
+        fields = ["priority", "ticketSubject"]
+
 
 class TicketSubjectForm(ModelForm):
     class Meta:
         model = TicketSubject
-        fields = '__all__'
+        fields = "__all__"
+
 
 # class TicketForm(forms.ModelForm):
 #     class Meta:
@@ -42,7 +44,8 @@ class TicketSubjectForm(ModelForm):
 #         #     'required': 'Please enter your name'
 #         # }
 
+
 class TicketDetailForm(ModelForm):
     class Meta:
         model = TicketDetail
-        fields = ['req']
+        fields = ["req"]

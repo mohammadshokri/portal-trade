@@ -4,55 +4,54 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('base', '0005_alter_customerconfig_amuont_and_more'),
+        ("base", "0005_alter_customerconfig_amuont_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='customerconfig',
-            name='ep1_percent',
+            model_name="customerconfig",
+            name="ep1_percent",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='ep2_percent',
+            model_name="customerconfig",
+            name="ep2_percent",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='ep3_percent',
+            model_name="customerconfig",
+            name="ep3_percent",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='ep4_percent',
+            model_name="customerconfig",
+            name="ep4_percent",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='tp1_percent',
+            model_name="customerconfig",
+            name="tp1_percent",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='tp2_percent',
+            model_name="customerconfig",
+            name="tp2_percent",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='tp3_percent',
+            model_name="customerconfig",
+            name="tp3_percent",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='tp4_percent',
+            model_name="customerconfig",
+            name="tp4_percent",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='customerconfig',
-            name='use_tp_percent',
+            model_name="customerconfig",
+            name="use_tp_percent",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
     ]
