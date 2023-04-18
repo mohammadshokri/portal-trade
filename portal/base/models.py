@@ -151,7 +151,7 @@ class CustomerConfig(models.Model):
     api_secret = models.CharField(max_length=100, null=False)
     api_passphrase = models.CharField(max_length=100, null=False)
     trading_pass = models.CharField(max_length=20, null=True, blank=True)
-    provider_id = models.IntegerField(default=0, null=True, blank=True)
+    provider = models.ForeignKey( Provider, on_delete=models.CASCADE, null=True, blank=True)
     channel_id = models.IntegerField(default=0, null=True, blank=True)
     ex_id = models.IntegerField(default=0, null=True, blank=True)
     amuont = models.IntegerField(default=0, null=True, blank=True)

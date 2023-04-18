@@ -1,16 +1,70 @@
 {% extends 'main.html' %}
-
-
 {% block content %}
-    <div>
- {% if user.is_authenticated == True and request.user.id == customer.id_id %}
-    <div>
-        <h1> Profile page...</h1>
-        <h4> {{customer.first_name}}</h4>
-        <h4> {{customer.last_name}}</h4>
-        <h4> {{customer.phone}}</h4>
-        <h4> {{customer.created|timesince}} ago</h4>
+{% if user.is_authenticated == True and request.user.id == customer.id_id %}
+<div>
+    <div class="bg-white border rounded">
+        <div class="row no-gutters">
+            <div class="col-lg-4 col-xl-3">
+                <div class="profile-content-left profile-left-spacing pt-5 pb-3 px-3 px-xl-5">
+                    <div class="card text-center widget-profile px-0 border-0">
+                        <div class="card-img mx-auto rounded-circle">
+                            <img src="{{form.avatar.value.url}}" width="50 100%">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="py-2 text-dark"> {{customer.first_name}}</h4>
+                            <h4 class="py-2 text-dark"> {{customer.last_name}}</h4>
+                            <p id="id_status" hidden>{{form.status }}</p>
+                            <p id="id_status_desc"><h4 class="py-2 text-dark"></h4></p>
+                        </div>
+                    </div>
+                    <hr class="w-100">
+                    <div class="contact-info pt-4">
+                        <h5 class="text-dark mb-1">Contact Information</h5>
+                        <p class="text-dark font-weight-medium pt-4 mb-2">Email address</p>
+                        <p>{{form.email.value}}</p>
+                        <p class="text-dark font-weight-medium pt-4 mb-2">Phone Number</p> <p>{{customer.phone}}</p>
+                        <p class="text-dark font-weight-medium pt-4 mb-2"> {{customer.created|timesince}} ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8 col-xl-9">
+                <div class="profile-content-right profile-right-spacing py-5">
+                    <ul class="nav nav-tabs px-3 px-xl-5 nav-style-border" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#profile"
+                               aria-selected="true">Exchange Accounts</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " data-toggle="tab" href="#setting"
+                               aria-selected="false">Your Signals</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#referal" aria-selected="false">Vendors</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content px-3 px-xl-5" id="myTabContent">
+                        <div class="tab-pane fade show active" id="profile">
+                            <p class="card-text mx-1">{% include "partials/customer_conf_inline.html" %}</p>
+                        </div>
+
+                        <div class="tab-pane fade" id="setting">
+                            <p class="card-text mx-1">{% include "partials/customer_signal_inline.html" %}</p>
+                        </div>
+
+                        <div class="tab-pane fade" id="referal">
+                            <p class="card-text mx-1">{% include "partials/customer_vendor_inline.html" %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    {%endif %}
 </div>
+
+{%endif %}
+
 {% endblock  %}

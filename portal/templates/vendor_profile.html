@@ -5,7 +5,7 @@
         <div class="card card-default">
             {% for p in provider_profile %}
             <div class="row">
-                <div class="col 8 mx-3 my-3">
+                <div class="col 8 mx-5 my-3">
                     <div class="my-3">
                         <h1 class="card-title fw-bold m-3 text-dark">{{p.NAME}}</h1>
                     </div>
@@ -15,55 +15,69 @@
                     <p class="card-text pb-3 my-3">Joined {{ p.CREATED|timesince }} ago</p>
                     <h4> {{p.PROFIT_ALL}}</h4>
                     <h4> {{p.DSC}}</h4>
-
-                    <a href="#">Subscribe</a>
+                    <hr/>
+                    <a href="#">
+                        <button class="btn btn-primary">Subscribe</button>
+                    </a>
                 </div>
 
-                <div class="col 4 mt-5">
-                    <h4>1 month:{{p.PRICE1MONTH}} 3month:{{p.PRICE3MONTH}}
-                        12month:{{p.PRICE12MONTH}}
+                <div class="card-body">
+                    <h2 class="">Cost</h2>
+                    <table class="table">
+                        <thead>
+                        <tr class="table-primary">
+                            <th scope="col">1 month</th>
+                            <th scope="col">3 month</th>
+                            <th scope="col">12 month</th>
+                        </tr>
+                        </thead>
 
-                    </h4>
+                        <tbody>
+                        <tr class="table-info">
+                            <td>{{p.PRICE1MONTH}}$</td>
+                            <td>{{p.PRICE3MONTH}}$</td>
+                            <td>{{p.PRICE12MONTH}}$
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <div class="card card-default">
-                <div class="card-header card-header-border-bottom">
-                    <h2>Indicators</h2>
+                <div class="card card-default">
+                    <div class="card-header card-header-border-bottom">
+                        <h2>Indicators</h2>
+                    </div>
+                    <table class="table ">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Profitability (1 days)</th>
+                            <th scope="col">Profitability (7 days)</th>
+                            <th scope="col">Profitability (30 days)</th>
+                            <th scope="col">Profitability (365 days)</th>
+                            <th scope="col">Profitability (all)</th>
+
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>{{p.PROF1}}</td>
+                            <td>{{p.PROF7}}</td>
+                            <td>{{p.PROF30}}</td>
+                            <td>{{p.PROF365}}</td>
+                            <td>{{p.PROFALL}}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
-                <table class="table">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Profitability (1 days)</th>
-                        <th scope="col">Profitability (7 days)</th>
-                        <th scope="col">Profitability (30 days)</th>
-                        <th scope="col">Profitability (365 days)</th>
-                        <th scope="col">Profitability (all)</th>
 
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <tr>
-                        <td>{{p.PROF1}}</td>
-                        <td>{{p.PROF7}}</td>
-                        <td>{{p.PROF30}}</td>
-                        <td>{{p.PROF365}}</td>
-                        <td>{{p.PROFALL}}</td>
-                    </tr>
-
-                    {% endfor %}
-
-                    </tbody>
-                </table>
-
-            </div>
-
-
-            <div class="card card-default">
-                <div class="col" >
-                    <h2>Profitability</h2>
-                    {% include 'provider_barchart.html'%}
+                <div class="card card-default">
+                    <div class="col">
+                        <h2>Profitability</h2>
+                        {% include 'provider_barchart.html'%}
+                    </div>
                 </div>
             </div>
         </div>

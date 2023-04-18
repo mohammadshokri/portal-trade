@@ -81,7 +81,6 @@ class SignalFutureListView(ListView):
     def get_queryset(self):
         try:
             with connections["default"].cursor() as cursor:
-                print(self.request.user.id)
                 cursor.execute(
                     f"select id, id_id, typ,side,lv, ep1, ep2,ep3,ep4, sl_number ,ex_name, updated, created, provider_name,avatar,status  from v_signal where id_id={self.request.user.id}"
                 )

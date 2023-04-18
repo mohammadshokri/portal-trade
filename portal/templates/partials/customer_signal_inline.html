@@ -1,13 +1,8 @@
-{% extends 'main.html' %}
-{% block content %}
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card card-default">
-            <div class="card-header card-header-border-bottom">
-                <h2>All Signals (spot and future)</h2>
-            </div>
+<div class="card card-table-border-none  border-0 recent-orders " id="recent-orders">
+    <div class="card-header justify-content-between">
+        <h2>Your Signals</h2>
 
-            <table class="table">
+                 <table class="table">
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">No#</th>
@@ -15,32 +10,26 @@
                     <th scope="col">side</th>
                     <th scope="col">ep1</th>
                     <th scope="col">ep2</th>
-                    <th scope="col">ep3</th>
-                    <th scope="col">ep4</th>
                     <th scope="col">sl</th>
                     <th scope="col">exchange</th>
                     <th scope="col">status</th>
                     <th scope="col">created</th>
-                    <th scope="col">updated</th>
                     <th scope="col">signal provider</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                {% for s in signals %}
+                {% for s in customerSignal %}
                     <tr>
                         <td><a href="{% url 'signals:signal-detail' s.ID %}">{{s.ID}}# </a></td>
                         <td>{{s.TYP}}</td>
                         <td>{{s.SIDE}}</td>
                         <td>{{s.EP1}}</td>
                         <td>{{s.EP2}}</td>
-                        <td>{{s.EP3}}</td>
-                        <td>{{s.EP4}}</td>
                         <td>{{s.SL_NUMBER}}</td>
                         <td>{{s.EX_NAME}}</td>
                         <td>{{s.STATUS}}</td>
                         <td>{{ s.CREATED }}</td>
-                        <td>{{ s.UPDATED }}</td>
                         <td><img src="{{s.AVATAR}}" width="30" height="30">{{s.PROVIDER_NAME}}</td>
                     </tr>
 
@@ -48,24 +37,6 @@
                 </tbody>
             </table>
 
-        </div>
-    </div>
-    <div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
     </div>
 </div>
-{% endblock%}

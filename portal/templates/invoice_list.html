@@ -1,26 +1,59 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<div class="card card-default">
-    <div class="card-header card-header-border-bottom">
-        <h2>Invoices </h2>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-12">
-                {% for invoice in form%}
-                 <li><a href="{% url 'invoice-edit' invoice.id %}">
-                {{invoice.w_customer}} <br/>
-                {{invoice.trx_id}} <br/>
-                {{invoice.customer}} <br/>
-                {{invoice.PlanPrice}} <br/>
-                {{invoice.status}} <br/>
-                {{invoice.updated}} <br/>
-                 </a>
-                 </li>
-                {% endfor%}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-default">
+            <div class="card-header card-header-border-bottom">
+                <h2>Invoices</h2>
             </div>
+
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">wallet</th>
+                    <th scope="col">trx id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">plan</th>
+                    <th scope="col">status</th>
+                    <th scope="col">updated</th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for invoice in form%}
+                <tr>
+                    <td><a href="{% url 'invoice-edit' invoice.id %}">
+                        {{invoice.w_customer}}
+                    <td>{{invoice.trx_id}}</td>
+                    <td>{{invoice.customer}}</td>
+                    <td>{{invoice.PlanPrice}}</td>
+                    <td>{{invoice.status}}</td>
+                    <td>{{invoice.updated}}</td>
+                    </a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
+    </div>
+       <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
     </div>
 </div>
 

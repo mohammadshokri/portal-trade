@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from . import models
+from signals.models import Signal
 from tickets.models import TicketDetail
 from .form import (
     CustomerForm,
@@ -30,7 +31,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
 import numpy as np
 from datetime import datetime
-
+from django.db.models import Q
 
 def createAccountExchange(request):
     customerConf = models.CustomerConfig(customer_id=request.user.id)
@@ -127,11 +128,27 @@ def home(request):
         customer = get_object_or_404(
             models.Customer.objects, id_id=request.user.id
         )
-        context = {"customer": customer}
+        customerConfig = models.CustomerConfig.objects.filter(customer_id= request.user.id).order_by('-id')
+
+        customerVendor =  models.Provider.objects.filter(Q(id__in=customerConfig.values('provider')))
+        # print(customerVendor.query)
+        # customerSignal = Signal.objects.filter(provider_id__in=customerConfig.values('provider'))
+
+        try:
+            with connections["default"].cursor() as cursor:
+                cursor.execute(
+                    f"select id, id_id, typ,side,lv, ep1, ep2,ep3,ep4, sl_number ,ex_name, updated, created, provider_name,avatar,status  from v_signal where id_id={request.user.id}"
+                )
+                customerSignal = dictfetchall(cursor)
+
+        except:
+            print("None")
+            customerSignal ={}
+        context = {"customer": customer, 'customerConfig':customerConfig, 'customerVendor':customerVendor, 'customerSignal':customerSignal}
+        return render(request, "home.html", context)
     else:
         context = {}
-    return render(request, "home.html", context)
-
+    return render(request, "public/index.html", {})
 
 @login_required(login_url="login")
 def createCustomer(request):
@@ -242,6 +259,7 @@ def vendorProfile(request, id):
         with connections["default"].cursor() as cursor:
             cursor.execute(f"select * from v_provider where id={id}")
             provider_profile = dictfetchall(cursor)
+            print(provider_profile)
             chartLabel = [
                 "last day",
                 "last 7 days",

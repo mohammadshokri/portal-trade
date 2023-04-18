@@ -1,0 +1,8 @@
+<div class="card card-table-border-none  border-0 recent-orders " id="recent-orders">
+    <div class="card-header justify-content-between">
+        <h2>Your Vendors</h2>
+         {%for i in customerVendor %}
+            name {{i.name}}
+        {%endfor %}
+    </div>
+</div>
