@@ -49,11 +49,11 @@ INSTALLED_APPS = [
     "signals.apps.SignalsConfig",
     "base.apps.BaseConfig",
     "tickets.apps.TicketsConfig",
-    "crispy_forms",
-    "crispy_tailwind",
-    "widget_tweaks",
-    "bootstrapform",
-    "bootstrap5",
+    # "crispy_forms",
+    # "crispy_tailwind",
+    # "widget_tweaks",
+    # "bootstrapform",
+    # "bootstrap5",
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
