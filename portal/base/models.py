@@ -52,7 +52,7 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=150, null=True)
     last_name = models.CharField(max_length=150, null=True)
     phone = models.CharField(max_length=13, null=True, blank=True)
-    email = models.EmailField(unique=True, null=True, blank=True)
+    # email = models.EmailField(unique=True, null=True, blank=True)
     avatar = models.ImageField(
         null=True, upload_to="profile_image/", blank=True
     )
