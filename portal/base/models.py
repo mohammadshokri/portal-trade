@@ -52,10 +52,11 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=150, null=True)
     last_name = models.CharField(max_length=150, null=True)
     phone = models.CharField(max_length=13, null=True, blank=True)
-    # email = models.EmailField(unique=True, null=True, blank=True)
+    email = models.EmailField(unique=True, null=True, blank=True)
     avatar = models.ImageField(
         null=True, upload_to="profile_image/", blank=True
     )
+    password = models.CharField(max_length=150, null=True)
     status = models.IntegerField(default=0)
     plan = models.ForeignKey(
         Plan, on_delete=models.SET_NULL, null=True, blank=True
@@ -145,6 +146,7 @@ class CustomerConfig(models.Model):
     customer = models.ForeignKey(
         Customer, on_delete=models.CASCADE, null=True
     )
+    active = models.IntegerField(default=1, null=True, blank=True)
     referal_key = models.CharField(max_length=100, null=True, blank=True)
     api_name = models.CharField(max_length=100, null=False)
     api_key = models.CharField(max_length=100, null=False)
@@ -180,7 +182,7 @@ class CustomerConfig(models.Model):
     tp9_percent = models.IntegerField(null=True, blank=True)
     tp10_percent = models.IntegerField(null=True, blank=True)
     status = models.IntegerField(default=0, null=True, blank=True)
-    number_tp = models.IntegerField(default=0, null=True, blank=True)
+    number_tp = models.PositiveIntegerField(default=0)
     updated = models.DateTimeField(null=True, blank=True)
     created = models.DateTimeField(null=True, blank=True)
 

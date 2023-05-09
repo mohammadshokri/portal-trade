@@ -7,6 +7,7 @@
         {{ form.management_form }}
         <div hidden>{{form.id }}</div>
         {% if user.is_authenticated == True and request.user.id == form.id.value %}
+
         <div class="bg-white border rounded">
             <div class="row no-gutters">
                 <div class="col-lg-4 col-xl-3">
@@ -18,7 +19,7 @@
                             </div>
                             <div class="card-body">
                                 <h4 class="py-2 text-dark">{{request.user.username}}</h4>
-                                <p id="id_status" hidden>{{form.status }}</p>
+                                <p id="id_status" hidden>{{form.status.value }}</p>
                                 <p id="id_status_desc"><h4 class="py-2 text-dark"></h4></p>
                             </div>
                         </div>
@@ -96,6 +97,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <p id="id_status" hidden>{{form.status}}</p>
 
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <button type="submit" value="update" class="btn btn-primary btn-pill">Update Profile
@@ -127,17 +129,14 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
-    {% else %}
-    <p>You're not allowed here!</p>
     {% endif%}
+    </form>
 </div>
 <script>
     $(document).ready(function(){
@@ -146,7 +145,7 @@
         $("#id_ref").select();
         document.execCommand("copy");
     });
-
+       // alert($("#id_status").html())
         if ( $("#id_status").html() == 1 ){
             $("#id_status_desc").html("Active");
         }else{

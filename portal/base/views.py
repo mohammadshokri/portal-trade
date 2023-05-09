@@ -89,6 +89,8 @@ def EditCustomerView(request, id):
             messages.success(request, "Your profile is updated successfully")
             return redirect("home")
         else:
+            print(form)
+            print('Error -'*10)
             print(form.errors)
     context = {"form": form, "customerConfig": customerConfig}
     return render(request, "edit_customer.html", context)

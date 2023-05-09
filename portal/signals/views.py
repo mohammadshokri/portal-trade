@@ -6,7 +6,7 @@ from django.views.generic.edit import View
 from django.shortcuts import get_object_or_404, redirect
 from django.db import connections
 from datetime import datetime
-
+from django.http import JsonResponse
 
 class SignalDetailView(ListView):
     model = SignalDt
@@ -19,8 +19,8 @@ class SignalDetailView(ListView):
         context = super(SignalDetailView, self).get_context_data(**kwargs)
         s_detail = (
             SignalDt.objects.filter(signal=self.kwargs["pk"])
-            .values()
-            .order_by("tp")
+                .values()
+                .order_by("tp")
         )
 
         context = {"signal_detail": s_detail}
@@ -126,7 +126,7 @@ class SignalCreateView(CreateView):
             print(form.errors)
             print(signal_detail_formset.errors)
             return self.form_invalid(form, signal_detail_formset)
-
+ # to do change provider_id
     def form_valid(self, form, signal_detail_formset):
         self.object = form.save(commit=False)
         form.instance.provider_id = 1
@@ -143,7 +143,7 @@ class SignalCreateView(CreateView):
             meta.created = datetime.now()
             meta.save()
         # return redirect(reverse("product:product_list"))
-        return redirect("home")
+        return redirect("/signals")
 
     def form_invalid(self, form, signal_detail_formset):
         return self.render_to_response(
@@ -151,7 +151,6 @@ class SignalCreateView(CreateView):
                 form=form, signal_detail_formset=signal_detail_formset
             )
         )
-
 
 class GetExchangePriceView(View):
     def get(self, request):

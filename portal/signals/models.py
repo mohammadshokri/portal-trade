@@ -7,6 +7,7 @@ from base.models import Customer, Provider, Exchange
 
 class Signal(models.Model):
     status = models.IntegerField(default=0, null=True, blank=True)
+
     # typ = models.IntegerField(default=0, choices=((1, 'Spot'), (2, 'Future')))
     typ = models.IntegerField(default=0)
     side = models.IntegerField(default=0)
@@ -131,7 +132,7 @@ class SigOrderSl(models.Model):
 
 
 class MarketPrice(models.Model):
-    name = models.CharField(max_length=20, null=False)
+    name = models.CharField(max_length=30, null=False)
     prc = models.FloatField(default=0)
     pre_prc = models.FloatField(default=0)
     side = models.IntegerField(default=0)
