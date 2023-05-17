@@ -156,7 +156,7 @@ class CustomerConfig(models.Model):
     provider = models.ForeignKey( Provider, on_delete=models.CASCADE, null=True, blank=True)
     channel_id = models.IntegerField(default=0, null=True, blank=True)
     ex_id = models.IntegerField(default=0, null=True, blank=True)
-    amuont = models.IntegerField(default=0, null=True, blank=True)
+    amuont =  models.FloatField(default=0, null=True, blank=True)
     close_trade = models.IntegerField(default=0, null=True, blank=True)
     grace_percent = models.IntegerField(default=0, null=True, blank=True)
     trailing_en = models.IntegerField(default=0, null=True, blank=True)
