@@ -103,6 +103,7 @@ class SignalCreateView(CreateView):
     template_name = "signal_form.html"
 
     def get_context_data(self, **kwargs):
+
         context = super(SignalCreateView, self).get_context_data(**kwargs)
         # context["provider"]= models.Provider.objects.get(id=1)
         if self.request.POST:
@@ -137,12 +138,12 @@ class SignalCreateView(CreateView):
         signal_metas = signal_detail_formset.save(commit=False)
         # print(signal_metas.count())
         for meta in signal_metas:
-            print("*")
             meta.signal = self.object
             meta.updated = datetime.now()
             meta.created = datetime.now()
             meta.save()
         # return redirect(reverse("product:product_list"))
+        print ('back to signals ...')
         return redirect("/signals")
 
     def form_invalid(self, form, signal_detail_formset):
@@ -159,4 +160,5 @@ class GetExchangePriceView(View):
         data = {
             "p_exchange": exchangePrice.prc,
         }
+        print('data is ', data)
         return JsonResponse(data)
